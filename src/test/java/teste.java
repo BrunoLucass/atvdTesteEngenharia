@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,10 +47,13 @@ public class teste {
         caixaDeBusca.clear();
         caixaDeBusca.sendKeys("Xbox");
 
+        // vai enviar clicando no botão
+        WebElement botaoBusca = driver.findElement(By.id("btnOK"));
+        botaoBusca.click();
 
-        // vai verificar se entrou na página certa
+
         String url = driver.getCurrentUrl();
-        assertEquals("https://www.casasbahia.com.br/", url);
+        assertTrue(driver.getCurrentUrl().contains("xbox"));
 
         // fecha a aplicação
         driver.quit();
@@ -69,18 +73,19 @@ public class teste {
         WebElement caixaDeBusca = driver.findElement(By.id("strBusca"));
         caixaDeBusca.sendKeys("Panelas");
 
+
         // vai enviar clicando no botão
         WebElement botaoBusca = driver.findElement(By.id("btnOK"));
         botaoBusca.click();
 
-        // vai verificar se entrou na página certa
-        String url = driver.getCurrentUrl();
-        assertEquals("https://www.casasbahia.com.br/", url);
+        //verifica
+        String title = driver.getTitle();
+        assertTrue(title.contains("Panelas"));
 
         // fecha a aplicação
         driver.quit();
 
     }
 
-
 }
+
